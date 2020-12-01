@@ -179,6 +179,12 @@ body.loading .modal {
 		<h2 id="wait">Loading...</h2>
 		<table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
 			<thead>
+			<tr>
+				<th></th>
+				<th colspan="8">Dataset</th>
+				<th colspan="6">Data Set Additional Info</th>
+				<th colspan="10">Resource</th>
+			</tr>
 				<tr>
 					<th>#</th>
 					<th>Name</th>
@@ -189,8 +195,15 @@ body.loading .modal {
 					<th>Department</th>
 					<th>Owner</th>
 					<th>Created date</th>
-<!--					<th>Recent views (last 2 weeks)</th>-->
-<!--					<th>Total views</th>-->
+					<!--					<th>Recent views (last 2 weeks)</th>-->
+					<!--					<th>Total views</th>-->
+					<th>Version</th>
+					<th>Maintainer Email</th>
+					<th>Security Classification</th>
+					<th>Used in Data Driven App</th>
+					<th>Update Feq</th>
+					<th>State</th>
+					<!-- resource below -->
 					<th>Resource name</th>
 					<th>Resource description</th>
 					<th>Resource format</th>
@@ -365,6 +378,13 @@ body.loading .modal {
 								resultsHTML += "<td>" + convertDate(item.metadata_created) + "</td>";
 								// resultsHTML += "<td>" + item.tracking_summary.recent + "</td>";
 								// resultsHTML += "<td>" + item.tracking_summary.total + "</td>";
+								resultsHTML += "<td>" + item['version'] + "</td>";
+								resultsHTML += "<td>" + item['maintainer_email'] + "</td>";
+								resultsHTML += "<td>" + item['security_classification'] + "</td>";
+								resultsHTML += "<td>" + item['data_driven_application'] + "</td>";
+								resultsHTML += "<td>" + item['update_frequency'] + "</td>";
+								resultsHTML += "<td>" + item['state'] + "</td>";
+
 								resultsHTML += "<td>" + val.name + "</td>";
 								resultsHTML += "<td>" + val.description + "</td>";
 								resultsHTML += "<td>" + val.format + "</td>";
@@ -375,6 +395,7 @@ body.loading .modal {
 								resultsHTML += "<td>" + convertDate(val.created) + "</td>";
 								resultsHTML += "<td>" + convertDate(val.last_modified) + "</td>";
 								resultsHTML += "<td>" + val['Expiration date'] + "</td>";
+
 								// resultsHTML += "<td>" + val.tracking_summary.recent + "</td>";
 								// resultsHTML += "<td>" + val.tracking_summary.total + "</td>";
 								resultsHTML += "</tr>";
