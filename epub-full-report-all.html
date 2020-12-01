@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<base href="http://tablesorter.com/docs/">
+		<meta charset="utf-8">
+		<title>Dataset report</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<!--		<link rel="stylesheet" href="http://tablesorter.com/docs/css/jq.css" type="text/css" media="print, projection, screen" />-->
+<!--		<link rel="stylesheet" href="http://tablesorter.com/themes/blue/style.css" type="text/css" media="print, projection, screen" />-->
+		<style>
+			body,div,h1{font-family:'trebuchet ms', verdana, arial;margin:0;padding:0;}
+			body{background-color:#fff;color:#333;font-size:small;margin:0;padding:0;}
+			h1{font-size:large;font-weight:400;margin:0;}
+			h2{color:#333;font-size:small;font-weight:400;margin:0;}
+			pre{background-color:#eee;border:1px solid #ddd;border-left-width:5px;color:#333;font-size:small;overflow-x:auto;padding:15px;}
+			pre.normal{background-color:transparent;border:none;border-left-width:0;overflow-x:auto;}
+			#external{margin: 20px;}
+			#logo{background:url(https://web.archive.org/web/20181007203154im_/http://tablesorter.com/docs/css/images/jq.png);display:block;float:right;height:31px;margin-right:10px;margin-top:10px;width:110px;}
+			#main{margin:0px 25px 0px 40px;padding:0 15px 15px 0;}
+			#content{padding:20px;}
+			#busy{background-color:#e95555;border:1px ridge #ccc;color:#eee;display:none;padding:3px;position:absolute;right:7px;top:7px;}
+			hr{height:1px;}
+			code{font-size:108%;font-style:normal;padding:0;}
+			ul{color:#333;list-style:square;}
+			#banner{margin:40px;margin-bottom: 0px;padding-bottom:10px;text-align:left;}
+			#banner *{color:#232121;font-family:Georgia, Palatino, Times New Roman;font-size:30px;font-style:normal;font-weight:400;margin:0;padding:0;}
+			#banner h1{display:block;float:left;}
+			#banner h1 em{color:#6cf;}
+			#banner h2{float:right;font-size:26px;margin:10px 10px -10px -10px;}
+			#banner h3{clear:both;display:block;font-size:12px;margin-top:-20px;}
+			#banner a{border-top:1px solid #888;display:block;font-size:14px;margin:5px 0 0;padding:10px 0 0;text-align:right;width:auto;}
+			a.external{background-image:url(https://web.archive.org/web/20181007203154im_/http://tablesorter.com/docs/img/external.png);background-position:center right;background-repeat:no-repeat;padding-right:12px;}
+			form{font-size:10pt;margin-bottom:20px;width:auto;}
+			form fieldset{padding:10px;text-align:left;width:140px;}
+			div#main h1{border-bottom:1px solid #CDCDCD;display:block;margin-top:20px;padding:10px 0 2px;}
+			table#tablesorter-demo {margin: 10px 0 0 0;}
+			table#options *{font-size:small;}
+			p.tip em {padding: 2px; background-color: #6cf; color: #FFF;}
+			p.tip.update em {background-color: #FF0000;}
+			div.digg {float: right; margin-left: 20px;}
+			#skyscraper {float: right; margin-right: 0px; margin-left: 20px; background: #EEE; padding: 20px;}
+			#skyscraper > div { margin-bottom: 20px; }
+			#skyscraper.wide { float: none; overflow: hidden; margin-left: 0; text-align: center;}
+			#skyscraper.wide > div { display: inline-block; margin-right: 20px;  margin-bottom: 0;}
+			/*
+                 FILE ARCHIVED ON 20:31:54 Oct 07, 2018 AND RETRIEVED FROM THE
+                 INTERNET ARCHIVE ON 23:21:01 Sep 30, 2020.
+                 JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+                 ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+                 SECTION 108(a)(3)).
+            */
+			/*
+            playback timings (ms):
+              captures_list: 742.71
+              esindex: 0.013
+              exclusion.robots: 0.32
+              load_resource: 761.596 (2)
+              exclusion.robots.policy: 0.308
+              LoadShardBlock: 693.157 (3)
+              PetaboxLoader3.resolve: 723.987 (2)
+              CDXLines.iter: 22.808 (3)
+              PetaboxLoader3.datanode: 668.724 (5)
+              RedisCDXSource: 20.234
+            */
+		</style>
+		<style>
+			/* tables */
+			table.tablesorter {
+				font-family:arial;
+				background-color: #CDCDCD;
+				margin:10px 0pt 15px;
+				font-size: 8pt;
+				width: 100%;
+				text-align: left;
+			}
+			table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+				background-color: #e6EEEE;
+				border: 1px solid #FFF;
+				font-size: 8pt;
+				padding: 4px;
+			}
+			table.tablesorter thead tr .header {
+				background-image: url(https://web.archive.org/web/20170721204838im_/http://tablesorter.com/themes/blue/bg.gif);
+				background-repeat: no-repeat;
+				background-position: center right;
+				cursor: pointer;
+			}
+			table.tablesorter tbody td {
+				color: #3D3D3D;
+				padding: 4px;
+				background-color: #FFF;
+				vertical-align: top;
+			}
+			table.tablesorter tbody tr.odd td {
+				background-color:#F0F0F6;
+			}
+			table.tablesorter thead tr .headerSortUp {
+				background-image: url(https://web.archive.org/web/20170721204838im_/http://tablesorter.com/themes/blue/asc.gif);
+			}
+			table.tablesorter thead tr .headerSortDown {
+				background-image: url(https://web.archive.org/web/20170721204838im_/http://tablesorter.com/themes/blue/desc.gif);
+			}
+			table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+				background-color: #8dbdd8;
+			}
+
+			/*
+                 FILE ARCHIVED ON 20:48:38 Jul 21, 2017 AND RETRIEVED FROM THE
+                 INTERNET ARCHIVE ON 23:15:38 Sep 30, 2020.
+                 JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+                 ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+                 SECTION 108(a)(3)).
+            */
+			/*
+            playback timings (ms):
+              LoadShardBlock: 71.98 (3)
+              esindex: 0.015
+              exclusion.robots: 0.207
+              exclusion.robots.policy: 0.192
+              PetaboxLoader3.datanode: 58.862 (4)
+              RedisCDXSource: 285.977
+              load_resource: 60.597
+              captures_list: 388.243
+              PetaboxLoader3.resolve: 54.828
+              CDXLines.iter: 22.869 (3)
+            */
+		</style>
+		<style>
+			/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+body {
+	margin: 2em;
+}
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+		</style>
+	</head>
+	<body>
+		<form id="query">
+		  <fieldset>
+		  	<legend>View dataset by department</legend>
+			<label for="ownerId">Department</label>
+			<select name="ownerId" id="ownerId">
+				<option value="loading...">loading...</option>
+        	</select>
+		  </fieldset>
+		</form>
+		<h1 id="heading"></h1>
+		<p id="download"><a href="#" class="export">Export Table data as CSV</a></p>
+		<h2 id="wait">Loading...</h2>
+		<table id="tablesorter-demo" class="tablesorter" border="0" cellpadding="0" cellspacing="1">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>URL</th>
+					<th>Description</th>
+					<th>Categories</th>
+					<th>Tags</th>
+					<th>Department</th>
+					<th>Owner</th>
+					<th>Created date</th>
+<!--					<th>Recent views (last 2 weeks)</th>-->
+<!--					<th>Total views</th>-->
+					<th>Resource name</th>
+					<th>Resource description</th>
+					<th>Resource format</th>
+					<th>Resource size (bytes)</th>
+					<th>Resource with API</th>
+					<th>Resource URL</th>
+					<th>Resource file</th>
+					<th>Resource created</th>
+					<th>Resource last modified</th>
+					<th>Resource next review</th>
+<!--					<th>Resource recent views (last 2 weeks)</th>-->
+<!--					<th>Resource total views</th>-->
+				</tr>
+			</thead>
+			<tbody id="results-od"></tbody>
+		</table>
+		<script>
+			(function() {
+				$.support.cors = true;
+				
+				function convertDate( text ) {
+					if ( typeof text === 'string' ) {
+						var value = new Date( text );
+						if ( isNaN( value.getTime() )) {
+							// assume ISO format: YYYY-MM-DD
+							var actual = text.split( /[-:T ]/ );
+							value = new Date( actual[ 0 ], parseInt( actual[ 1 ], 10 ) - 1, actual[ 2 ] );
+							if ( isNaN( value.getTime() )) {
+								return text;
+							}
+							// optional time component
+							if ( actual.length > 3 ) {
+								value.setHours( actual[ 3 ] );
+								if ( actual.length > 4 ) {
+									value.setMinutes( actual[ 4 ] );
+									if ( actual.length > 5 ) {
+										value.setSeconds( actual[ 5 ] );
+									}
+								}
+							}
+						}
+					} else {
+						value = text;
+					}
+
+					if(  text !== null ) {
+						text = ('0' + value.getDate()).slice(-2) + '/' + ('0' + (value.getMonth()+1)).slice(-2) + '/' + value.getFullYear();
+					} else {
+						text = 'undefined';
+					}
+					return text;
+				}
+
+				function buildOrglist() {
+					//"https://www.publications.qld.gov.au/api/3/action/organization_list?all_fields=true"
+
+					//select list id
+					var dataAPI = "https://www.publications.qld.gov.au/api/3/action/organization_list",
+							resultsHTML = '',
+							results = $( '#ownerId' );
+					$( results).addClass("loading");
+
+					$.getJSON( dataAPI, {
+						//fl: "title",
+						all_fields: true,
+						rows: 10000,
+						sort: "name asc"
+
+					}).done(function( data ) {
+						resultsHTML = "<select name=\"ownerId\" id=\"ownerId\">";
+						$.each( data.result, function( index, item ) {
+							resultsHTML +="<option value=\"" + item.id + "\">" + item.display_name + " (" + item.package_count + ")</option>";
+						});
+						resultsHTML += "</select>";
+						results.html(resultsHTML);
+						getData();
+					});
+
+				}
+				buildOrglist()
+
+				function exportTableToCSV($table, filename) {
+
+			        var $rows = $table.find('tr:has(td),tr:has(th)'),
+
+			            // Temporary delimiter characters unlikely to be typed by keyboard
+			            // This is to avoid accidentally splitting the actual contents
+			            tmpColDelim = String.fromCharCode(11), // vertical tab character
+			            tmpRowDelim = String.fromCharCode(0), // null character
+
+			            // actual delimiter characters for CSV format
+			            colDelim = '","',
+			            rowDelim = '"\r\n"',
+
+			            // Grab text from table into CSV formatted string
+			            csv = '"' + $rows.map(function (i, row) {
+			                var $row = $(row),
+			                    $cols = $row.find('td,th');
+
+			                return $cols.map(function (j, col) {
+			                    var $col = $(col),
+			                        text = $col.text();
+
+			                    return text.replace(/"/g, '""'); // escape double quotes
+
+			                }).get().join(tmpColDelim);
+
+			            }).get().join(tmpRowDelim)
+			                .split(tmpRowDelim).join(rowDelim)
+			                .split(tmpColDelim).join(colDelim) + '"',
+
+			            // Data URI
+			            csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+			        $(this)
+			            .attr({
+			            'download': filename,
+			                'href': csvData,
+			                'target': '_blank'
+			        });
+			    }
+
+
+				function getData() {
+					qString=""
+					if ($('#ownerId').val()!='') {qString="owner_org:"+ $('#ownerId').val()+" ";}
+					$("#wait").css("display", "block");
+					$("#tablesorter-demo").hide();
+					$("#download").css("display", "none");
+					$("#heading").css("display", "none");
+					
+
+					var dataAPI = "https://www.publications.qld.gov.au/api/action/package_search",
+						resultsHTML = '',
+						results = $( '#results-od' );
+						$( results).addClass("loading");
+
+					$.getJSON( dataAPI, {
+						//fl: "title",
+						q: qString,
+						rows: 10000,
+						sort: "metadata_created desc"
+
+					}).done(function( data ) {
+						
+						$( results ).html(""); 
+						$("#wait").css("display", "none");
+						$("#tablesorter-demo").show();
+						$("#download").css("display", "block");
+						$("#heading").css("display", "block");
+
+						$.each( data.result.results, function( index, item ) {
+							$.each(item.resources, function(indexR, val) {
+								resultsHTML += "<tr>";
+								resultsHTML += "<td>"+ (index + 1) +"</td>";
+								resultsHTML += "<td>"+ item.title +"</td>";
+								resultsHTML += "<td><a href='https://www.publications.qld.gov.au/dataset/" + item.name + "'>https://www.publications.qld.gov.au/dataset/"+ item.name +"</a></td>";
+								resultsHTML += "<td>"+ item.notes +"</td>";
+								resultsHTML += "<td>";
+								$.each(item.groups, function(index, val) {
+									resultsHTML += val.title +"; ";
+								});
+								resultsHTML += "</td>";
+								resultsHTML += "<td>";
+								$.each(item.tags, function(index, val) {
+									resultsHTML += val.display_name +"; ";
+								});
+								resultsHTML += "</td>";
+								resultsHTML += "<td>" + item.organization.title + "</td>";
+								resultsHTML += "<td>" + item.author_email + "</td>";
+								resultsHTML += "<td>" + convertDate(item.metadata_created) + "</td>";
+								// resultsHTML += "<td>" + item.tracking_summary.recent + "</td>";
+								// resultsHTML += "<td>" + item.tracking_summary.total + "</td>";
+								resultsHTML += "<td>" + val.name + "</td>";
+								resultsHTML += "<td>" + val.description + "</td>";
+								resultsHTML += "<td>" + val.format + "</td>";
+								resultsHTML += "<td>" + val.size + "</td>";
+								resultsHTML += "<td>" + (val.webstore_url == 'active' ? 'Yes' : '') + "</td>";
+								resultsHTML += "<td><a href='https://publications.qld.gov.au/dataset/" + item.name + "/resource/" + val.id + "'>https://publications.qld.gov.au/dataset/"+ item.name +"/resource/" + val.id + "</a></td>";
+								resultsHTML += "<td><a href='" + val.url + "'>"+ val.url +"</a></td>";
+								resultsHTML += "<td>" + convertDate(val.created) + "</td>";
+								resultsHTML += "<td>" + convertDate(val.last_modified) + "</td>";
+								resultsHTML += "<td>" + val['Expiration date'] + "</td>";
+								// resultsHTML += "<td>" + val.tracking_summary.recent + "</td>";
+								// resultsHTML += "<td>" + val.tracking_summary.total + "</td>";
+								resultsHTML += "</tr>";
+							});
+						});
+						$( results ).append( resultsHTML );
+						$( 'h1' ).text( $( '#ownerId option:selected' ).text() + ': ' + data.result.results.length + ' datasets' );
+					}).error(function(jqXHR, textStatus, errorThrown) { alert(errorThrown); });
+					
+				}
+				//getData();
+
+				$( "#ownerId" ).change(function() { getData(); });
+
+				// This must be a hyperlink
+			    $(".export").on('click', function (event) {
+			        // CSV
+			        var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth()+1; //January is 0!
+					var yyyy = today.getFullYear();
+
+					if(dd<10) {
+					    dd='0'+dd
+					} 
+
+					if(mm<10) {
+					    mm='0'+mm
+					} 
+
+					today = yyyy+'/'+mm+'/'+dd;
+
+
+			        exportTableToCSV.apply(this, [$('#tablesorter-demo'), 'Data Portal-' + $("#ownerId option:selected").text() + '-' + today +'.csv']);
+			        
+			        // IF CSV, don't do event.preventDefault() or return false
+			        // We actually need this to be a typical hyperlink
+			    });
+
+			})();
+		</script>
+	</body>
+</html>
