@@ -192,7 +192,10 @@ body.loading .modal {
 					<th>Categories</th>
 					<th>Tags</th>
 					<th>Department</th>
-					<th>Owner</th>
+					<th>Author</th>
+					<th>Author Email</th>
+					<th>Maintainer</th>
+					<th>Maintainer Email</th>
 					<th>Created date</th>
 
 					<th>Version</th>
@@ -368,7 +371,10 @@ body.loading .modal {
 								});
 								resultsHTML += "</td>";
 								resultsHTML += "<td>" + item.organization.title + "</td>";
+								resultsHTML += "<td>" + item.author + "</td>";
 								resultsHTML += "<td>" + item.author_email + "</td>";
+								resultsHTML += "<td>" + item.maintainer + "</td>";
+								resultsHTML += "<td>" + item.maintainer_email + "</td>";
 								resultsHTML += "<td>" + convertDate(item.metadata_created) + "</td>";
 								// resultsHTML += "<td>" + item.tracking_summary.recent + "</td>";
 								// resultsHTML += "<td>" + item.tracking_summary.total + "</td>";
