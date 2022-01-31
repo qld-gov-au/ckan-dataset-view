@@ -216,6 +216,7 @@ body.loading .modal {
 					<th>Resource file</th>
 					<th>Resource created</th>
 					<th>Resource last modified</th>
+					<th>update_frequency</th>
 					<th>Resource next review</th>
 <!--					<th>Resource recent views (last 2 weeks)</th>-->
 <!--					<th>Resource total views</th>-->
@@ -405,6 +406,7 @@ body.loading .modal {
 								resultsHTML += "<td><a href='" + val.url + "'>"+ val.url +"</a></td>";
 								resultsHTML += "<td>" + convertDate(val.created) + "</td>";
 								resultsHTML += "<td>" + convertDate(val.last_modified) + "</td>";
+								resultsHTML += "<td>" +  val.update_frequency  + "</td>";
 								resultsHTML += "<td>" + val['Expiration date'] + "</td>";
 
 								// resultsHTML += "<td>" + val.tracking_summary.recent + "</td>";
