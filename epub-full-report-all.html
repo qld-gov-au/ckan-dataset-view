@@ -141,9 +141,9 @@
     left:       0;
     height:     100%;
     width:      100%;
-    background: rgba( 255, 255, 255, .8 ) 
+    background: rgba( 255, 255, 255, .8 )
                 url('//i.stack.imgur.com/FhHRx.gif')
-                50% 50% 
+                50% 50%
                 no-repeat;
 }
 
@@ -153,7 +153,7 @@ body {
 /* When the body has the loading class, we turn
    the scrollbar off with overflow:hidden */
 body.loading {
-    overflow: hidden;   
+    overflow: hidden;
 }
 
 /* Anytime the body has the loading class, our
@@ -186,6 +186,7 @@ body.loading .modal {
 			</tr>
 				<tr>
 					<th>#</th>
+					<th>Resources in Dataset</th>
 					<th>Name</th>
 					<th>URL</th>
 					<th>Description</th>
@@ -221,7 +222,7 @@ body.loading .modal {
 		<script>
 			(function() {
 				$.support.cors = true;
-				
+
 				function convertDate( text ) {
 					if ( typeof text === 'string' ) {
 						var value = new Date( text );
@@ -332,7 +333,7 @@ body.loading .modal {
 					$("#tablesorter-demo").hide();
 					$("#download").css("display", "none");
 					$("#heading").css("display", "none");
-					
+
 
 					var dataAPI = "https://www.publications.qld.gov.au/api/action/package_search",
 						resultsHTML = '',
@@ -346,8 +347,8 @@ body.loading .modal {
 						sort: "metadata_created desc"
 
 					}).done(function( data ) {
-						
-						$( results ).html(""); 
+
+						$( results ).html("");
 						$("#wait").css("display", "none");
 						$("#tablesorter-demo").show();
 						$("#download").css("display", "block");
@@ -357,6 +358,7 @@ body.loading .modal {
 							$.each(item.resources, function(indexR, val) {
 								resultsHTML += "<tr>";
 								resultsHTML += "<td>"+ (index + 1) +"</td>";
+								resultsHTML += "<td>"+ Object.keys(item.resources).length +"</td>";
 								resultsHTML += "<td>"+ item.title +"</td>";
 								resultsHTML += "<td><a href='https://www.publications.qld.gov.au/dataset/" + item.name + "'>https://www.publications.qld.gov.au/dataset/"+ item.name +"</a></td>";
 								resultsHTML += "<td>"+ item.notes +"</td>";
@@ -400,7 +402,7 @@ body.loading .modal {
 						$( results ).append( resultsHTML );
 						$( 'h1' ).text( $( '#ownerId option:selected' ).text() + ': ' + data.result.results.length + ' datasets' );
 					}).error(function(jqXHR, textStatus, errorThrown) { alert(errorThrown); });
-					
+
 				}
 				//getData();
 
@@ -416,17 +418,17 @@ body.loading .modal {
 
 					if(dd<10) {
 					    dd='0'+dd
-					} 
+					}
 
 					if(mm<10) {
 					    mm='0'+mm
-					} 
+					}
 
 					today = yyyy+'/'+mm+'/'+dd;
 
 
 			        exportTableToCSV.apply(this, [$('#tablesorter-demo'), 'Data Portal-' + $("#ownerId option:selected").text() + '-' + today +'.csv']);
-			        
+
 			        // IF CSV, don't do event.preventDefault() or return false
 			        // We actually need this to be a typical hyperlink
 			    });

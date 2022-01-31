@@ -187,6 +187,7 @@ body.loading .modal {
 			</tr>
 				<tr>
 					<th>#</th>
+					<th>Resources in Dataset</th>
 					<th>Name</th>
 					<th>URL</th>
 					<th>Description</th>
@@ -369,6 +370,8 @@ body.loading .modal {
 							$.each(item.resources, function(indexR, val) {
 								resultsHTML += "<tr>";
 								resultsHTML += "<td>"+ (index + 1) +"</td>";
+								resultsHTML += "<td>"+ Object.keys(item.resources).length +"</td>";
+
 								resultsHTML += "<td>"+ item.title +"</td>";
 								resultsHTML += "<td><a href='https://www.data.qld.gov.au/dataset/" + item.name + "'>https://www.data.qld.gov.au/dataset/"+ item.name +"</a></td>";
 								resultsHTML += "<td>"+ item.notes +"</td>";
